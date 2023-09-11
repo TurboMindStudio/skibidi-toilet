@@ -3,7 +3,27 @@ guid: 990437aa6aebc85468b3f1ec97e78b3d
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Door
+    second: {fileID: 2100000, guid: 3d91fe5c173e5024988f4b1f58968e17, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Hand
+    second: {fileID: 2100000, guid: 65784c7af69b1c34ebb3abf97bd82385, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Lock
+    second: {fileID: 2100000, guid: 8199b1adf8eda5e40a7de523dd284030, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Lock_2
+    second: {fileID: 2100000, guid: 32659eaec3e375140947f280bba84252, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
