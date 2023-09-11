@@ -7,6 +7,7 @@ public class playerController : MonoBehaviour
 {
     [Range(0f, 50f)]
     [SerializeField] float walkSpeed;
+    [SerializeField] float RunSpeed;
     [SerializeField] CharacterController cc;
     [SerializeField] Transform cam;
     float turnSmoothVelocity;
@@ -16,6 +17,7 @@ public class playerController : MonoBehaviour
 
     // cinemachine
     [SerializeField] CinemachineVirtualCamera cinemachineVirtualCamera;
+    private CinemachineBasicMultiChannelPerlin m_ChannelPerlin;
 
     private void Awake()
     {
@@ -28,7 +30,8 @@ public class playerController : MonoBehaviour
 
         canMove = true;
         cc=GetComponent<CharacterController>();
-        
+        m_ChannelPerlin = cinemachineVirtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+
     }
 
     private void Update()
@@ -49,6 +52,7 @@ public class playerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+      
         if (direction.magnitude >= 0.1f)
         {
 
@@ -58,7 +62,29 @@ public class playerController : MonoBehaviour
             Vector3 moveDir= Quaternion.Euler(0f, targetAngle, 0f)*Vector3.forward;
            // Vector3 move = transform.right * horizontal + transform.forward * Vertical;
             cc.Move(moveDir.normalized * walkSpeed * Time.deltaTime);
+
+            m_ChannelPerlin.m_AmplitudeGain = 1;
+            m_ChannelPerlin.m_FrequencyGain = 1;
+
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                walkSpeed = RunSpeed;
+                m_ChannelPerlin.m_AmplitudeGain = 1.5f;
+                m_ChannelPerlin.m_FrequencyGain = .5f;
+            }
+            else
+            {
+                walkSpeed = 2;
+            }
+            
         }
+        else
+        {
+            m_ChannelPerlin.m_AmplitudeGain = .5f;
+            m_ChannelPerlin.m_FrequencyGain = .5f;
+        }
+
+        
         
     }
 }
